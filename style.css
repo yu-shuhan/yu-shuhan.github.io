@@ -1,0 +1,167 @@
+body {
+    font-family: "Anek Latin", sans-serif;
+    margin: 0;
+    background-color: #fafafa;
+    color: #333;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: white;
+    border-bottom: 1px solid #eee;
+  }
+  
+  header h1 a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+  }
+  
+ /* About 下划线固定 */
+nav a.active {
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 2px;
+    color: var(--main-color); /* 固定颜色 */
+    transition: none;          /* 取消 hover 过渡动画 */
+  }
+  
+  
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #555;
+  }
+  
+  .gallery-section {
+    padding: 3rem;
+  }
+  
+  .gallery-section h2 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* 调整 overlay 内文字样式 */
+.overlay h3 {
+    font-size: 3rem; /* ← 放大标题字号，可以改成2rem、2.5rem等 */
+    font-weight: 700; /* 加粗 */
+    font-family: "Playfair Display", serif; /* ← 这里改为你想用的字体 */
+    color: #111; /* 深色标题 */
+    margin-bottom: 0.5rem;
+  }
+  
+  /* 如果有描述文字 */
+  .overlay p {
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Anek Latin", sans-serif;
+    color: #444;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  .gallery-item:hover .overlay {
+    opacity: 1;
+  }
+  
+  .view-btn {
+    margin-top: 10px;
+    background: black;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  /* 🔸 让 “Animation” 标题居中、改字体、改颜色 */
+  
+/* 🔸 “Animation” 标题手写风格 */
+.gallery-section h2 {
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Shadows Into Light";
+    color: #bdba16;
+    
+    /* 渐变文字 */
+    background: linear-gradient(90deg, #111, #666);
+    background-clip: text;           /* 标准属性 */
+    -webkit-background-clip: text;   /* Chrome/Safari */
+    
+    color: transparent;               /* 标准属性 */
+    -webkit-text-fill-color: transparent; /* Chrome/Safari */
+  
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+  }
+  
+  .zilla-slab-regular {
+    font-family: "Zilla Slab", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .zilla-slab-bold {
+    font-family: "Zilla Slab", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .zilla-slab-bold-italic {
+    font-family: "Zilla Slab", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
