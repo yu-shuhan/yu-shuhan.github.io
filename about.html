@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABOUT | SHUHAN YU</title>
+
+  <!-- 字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --main-color: #111;
+      --accent-color: #c7b500;
+      --bg-color: #fafafa;
+    }
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--main-color);
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    header h2 {
+      font-size: 1rem;
+      color: #666;
+      letter-spacing: 3px;
+      font-weight: 500;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      background-color: white;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    .about {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      font-size: 1rem;
+      line-height: 1.8;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .about p {
+      margin-bottom: 1.2rem;
+    }
+
+    .resume-button {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .resume-button a button {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .resume-button a button:hover {
+      background-color: #b5a200;
+    }
+
+    .connect {
+      text-align: center;
+      padding: 3rem 2rem;
+      background-color: #fff;
+      color: var(--main-color);
+      border-top: 1px solid #eee;
+    }
+
+    .connect h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .connect a {
+      display: inline-block;
+      margin: 0.5rem 1rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .connect a:hover {
+      opacity: 0.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SHUHAN YU</h1>
+    <h2>DIGITAL ARTIST | PAINTER</h2>
+  </header>
+
+  <nav>
+    <a href="animation.html">WORKS</a>
+    <a href="about.html" class="active">ABOUT</a>
+  </nav>
+  
+
+  <section class="about">
+    <p>Hello,</p>
+
+    <p>My name is <b>Shuhan Yu</b>, and I am a digital artist and painter studying at the <b>School of the Art Institute of Chicago</b>, 
+        currently pursuing a Bachelor of Fine Arts. My work examines the relationships between body, space, and environment across multimedia..</p>
+
+    <p>I have produced 2D & 3D animations, oil paintings, video installations, artist books, short films, 
+        and zines, utilizing a diverse array of industry-standard software including <b>Maya</b>, <b>Unreal Engine</b>, 
+        <b>After Effects</b>, and <b>Storyboard Pro</b>.</p>
+
+    <p>This portfolio presents selected works from my studies and projects. I am open to collaborations, internships, and 
+        professional opportunities in digital art, animation, and mixed media.</p>
+
+    
+
+    <div class="resume-button">
+      <a href="Shuhan_Yu_Resume.pdf" download><button>Download Resume PDF</button></a>
+    </div>
+  </section>
+
+  <section class="connect">
+    <h2>Let's Connect</h2>
+    <p>Use the form to reach out, or just to say hi!</p>
+    <a href="mailto:yushuhan.syu@gmail.com">yushuhan.syu@gmail.com</a>
+    +1 (312) 672-9982
+    <a href="https://www.linkedin.com/in/shuhan-yu-6327a038b/">LinkedIn</a>
+  </section>
+
+  <footer>
+    © 2025 Shuhan Yu | All Rights Reserved
+  </footer>
+</body>
+</html>

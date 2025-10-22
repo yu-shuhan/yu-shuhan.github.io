@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuhan Yu | Painting</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Anek+Latin:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* --- Gallery Layout --- */
+    .painting-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ✅ 固定每行两张 */
+  gap: 5px;
+  justify-items: center;
+  align-items: start;
+  padding: 50px 40px;
+}
+
+
+    .painting-item {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+
+    .painting-item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      border-radius: 12px;
+    }
+
+    .painting-item:hover img {
+      transform: scale(1.03);
+    }
+
+    /* --- Hover overlay --- */
+    .painting-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-family: "Anek Latin", sans-serif;
+      font-size: 16px;
+      transition: opacity 0.3s ease;
+      text-align: center;
+    }
+
+    .painting-item:hover .painting-overlay {
+      opacity: 1;
+    }
+
+    /* --- Lightbox --- */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .lightbox img {
+      max-width: 88%;
+      max-height: 80%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    /* --- Close + navigation --- */
+    .lightbox .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 45px;
+      font-size: 38px;
+      color: white;
+      cursor: pointer;
+      font-family: "Playfair Display", serif;
+      z-index: 10000;
+    }
+
+    .lightbox .nav-btn {
+      position: absolute;
+      top: 50%;
+      font-size: 48px;
+      color: white;
+      cursor: pointer;
+      padding: 10px 20px;
+      user-select: none;
+      font-family: "Playfair Display", serif;
+      transform: translateY(-50%);
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox .nav-btn:hover { opacity: 0.7; }
+
+    .lightbox .prev { left: 40px; }
+    .lightbox .next { right: 40px; }
+
+    /* --- Caption under lightbox image --- */
+    .lightbox-caption {
+      color: #fff;
+      font-family: "Anek Latin", sans-serif;
+      font-size: 15px;
+      margin-top: 12px;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .painting-gallery {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+        gap: 20px;
+      }
+      .lightbox img {
+        max-width: 95%;
+        max-height: 70%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><a href="index.html">Shuhan Yu</a></h1>
+    <nav>
+      <ul>
+        <li><a href="animation.html">Animation</a></li>
+        <li><a href="#painting">Painting</a></li>
+        <li><a href="design.html">Design</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="painting" class="gallery-section">
+    <h2>Painting</h2>
+    <div class="painting-gallery">
+      <div class="painting-item">
+        <img src="images/painting/1.jpg" alt="Painting 1" data-caption="2024 — Oil Painting" />
+        <div class="painting-overlay"><p>2024 — Oil Painting</p></div>
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/4.jpg" alt="Painting 2" data-caption="2023 — Oil Painting" />
+        <div class="painting-overlay"><p>2025 — Oil Painting</p></div>
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/2.jpg" alt="Painting 3" data-caption="2022 — Oil Painting" />
+        <div class="painting-overlay"><p>2025 — Oil Painting</p></div>
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/3.jpg" alt="Painting 4" data-caption="2025 — Oil Painting" />
+        <div class="painting-overlay"><p>2024 — Oil Painting</p></div>
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/5.jpg" alt="Painting 5" data-caption="2025 — Oil Painting" />
+        <div class="painting-overlay"><p>2023 — Oil Painting</p></div>
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/6.jpg" alt="Painting 6" data-caption="2025 — Oil Painting" />
+        <div class="painting-overlay"><p>2025 — Oil Painting</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Lightbox 弹窗 -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn">&times;</span>
+    <span class="nav-btn prev">&#10094;</span>
+    <img id="lightbox-img" src="" alt="">
+    <span class="nav-btn next">&#10095;</span>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <footer>
+    <p>© 2025 Shuhan Yu. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // --- Lightbox JS ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+    const items = document.querySelectorAll('.painting-item img');
+    const closeBtn = document.querySelector('.close-btn');
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+    let currentIndex = 0;
+
+    items.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        currentIndex = index;
+        openLightbox(img.src, img.dataset.caption);
+      });
+    });
+
+    function openLightbox(src, text) {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = src;
+      caption.textContent = text;
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % items.length;
+      lightboxImg.src = items[currentIndex].src;
+      caption.textContent = items[currentIndex].dataset.caption;
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      lightboxImg.src = items[currentIndex].src;
+      caption.textContent = items[currentIndex].dataset.caption;
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click', showNext);
+    prevBtn.addEventListener('click', showPrev);
+
+    // 键盘控制
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+  </script>
+</body>
+</html>
