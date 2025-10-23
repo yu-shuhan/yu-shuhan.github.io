@@ -6,7 +6,7 @@
   <title>2D Animation | Shuhan Yu</title>
 
   <!-- 字体 -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Cairo:wght@200..1000&family=Shadows+Into+Light&family=Zilla+Slab:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -67,29 +67,56 @@
       margin-bottom: 1rem;
     }
 
-    /* 图片 + 视频网格：两列 */
-    .gallery {
+    /* Gallery 2D 样式 */
+    .gallery-2d {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.2rem;
-      padding: 2rem 3rem;
+      grid-template-columns: repeat(2, 1fr); /* 两列 */
+      gap: 2rem;
+      padding: 2rem 6rem;
       justify-items: center;
     }
 
-    .gallery img,
-    .gallery video {
+    .gallery-2d-item {
+      display: flex;
+      flex-direction: column; /* 图片/视频 + 注释竖向排列 */
+      align-items: center;
+      width: 100%;
+    }
+
+    .gallery-2d-item img,
+    .gallery-2d-item video {
       width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 0;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       cursor: pointer;
     }
 
-    .gallery img:hover,
-    .gallery video:hover {
+    .gallery-2d-item img:hover,
+    .gallery-2d-item video:hover {
       transform: scale(1.03);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    /* 注释文字 */
+    .gallery-2d-caption {
+      display: block;
+      width: 100%;
+      font-family: "Cairo", sans-serif;
+      font-size: 0.8rem;
+      font-style: italic;        /* 整行斜体 */
+      color: #444;
+      text-align: left;
+      margin-top: 0.4rem;
+    }
+
+    .gallery-2d-caption b {
+      font-weight: 700;          /* 标题加粗 */
+      font-style: normal;        /* 可选：保持加粗不倾斜 */
+    }
+
+    .gallery-2d-caption span {
+      font-weight: 400;          /* 年份普通 */
     }
 
     footer {
@@ -116,7 +143,7 @@
     .lightbox img, .lightbox video {
       max-width: 90%;
       max-height: 80%;
-      border-radius: 10px;
+      border-radius: 0;
     }
 
     .close {
@@ -148,6 +175,13 @@
       color: #bdba16;
     }
 
+    /* 手机端：单列显示 */
+    @media (max-width: 768px) {
+      .gallery-2d {
+        grid-template-columns: 1fr;
+        padding: 1rem 1.5rem;
+      }
+    }
   </style>
 </head>
 
@@ -158,31 +192,61 @@
   </header>
 
   <nav>
-    <div class="header-nav-item header-nav-item--collection header-nav-item--active header-nav-item--homepage">
+    <div class="header-nav-item">
       <a href="animation.html" aria-current="page">WORKS</a>
     </div>
-    <div class="header-nav-item header-nav-item--collection">
+    <div class="header-nav-item">
       <a href="/about">ABOUT</a>
     </div>
   </nav>
 
   <div class="description">
     <h2>Character Design & Storyboards</h2>
-    <p>Year: 2024 - 2025 </p>
+    <p>Year: 2024 - 2025</p>
   </div>
 
   <!-- 视频 + 图片陈列 -->
-  <div class="gallery">
-    <!-- 视频：可手动控制 -->
-    <video src="video/animation2D_1.mp4" controls muted loop playsinline></video>
-    <video src="video/animation2D_2.mp4" controls muted loop playsinline></video>
-    <video src="video/animation2D_3.mp4" controls muted loop playsinline></video>
-    <video src="video/animation2D_4.mp4" controls muted loop playsinline></video>
-    <!-- 图片 -->
-    <img src="images/2D/animation2d.JPG" alt="Render 1">
-    <img src="images/2D/cha1.jpg" alt="Render 2">
-    <img src="images/2D/cha2.jpg" alt="Render 3">
-    <img src="images/2D/cha3.jpg" alt="Render 4">
+  <div class="gallery gallery-2d">
+    <div class="gallery-2d-item">
+      <video src="video/animation2D_1.mp4" autoplay muted loop playsinline controls></video>
+      <p class="gallery-2d-caption"><b><i>Into the Woods</i></b>, <span>2023</span>, animation; video, sound (excerpt)</p>
+    </div>
+  
+    <div class="gallery-2d-item">
+      <video src="video/animation2D_3.mp4" autoplay muted loop playsinline controls></video>
+      <p class="gallery-2d-caption"><b><i>ULCER</i></b>, <span>2023</span>, animation; video, sound (excerpt)</p>
+    </div>
+  
+  
+    <div class="gallery-2d-item">
+      <video src="video/animation2D_2.mp4" autoplay muted loop playsinline controls></video>
+      <p class="gallery-2d-caption"><b><i>Experimental Animation Practice</i></b>, <span>2023</span></p>
+    </div>
+  
+    <div class="gallery-2d-item">
+      <video src="video/animation2D_4.mp4" autoplay muted loop playsinline controls></video>
+      <p class="gallery-2d-caption"><b><i>Animation practice</i></b>, <span>2023</span></p>
+    </div>
+  
+    <div class="gallery-2d-item">
+      <img src="images/2D/animation2d.JPG" alt="Render 1">
+      <p class="gallery-2d-caption"><b><i>Character Design</i></b> - <span>Turn Around</span>, 2025</p>
+    </div>
+  
+    <div class="gallery-2d-item">
+      <img src="images/2D/cha1.jpg" alt="Render 2">
+      <p class="gallery-2d-caption"><i>Creature Design 1</i>, <i>2025</i></p>
+    </div>
+  
+    <div class="gallery-2d-item">
+      <img src="images/2D/cha2.jpg" alt="Render 3">
+      <p class="gallery-2d-caption"><i>Creature Design 2</i>, <i>2025</i></p>
+    </div>
+  
+    <div class="gallery-2d-item">
+      <img src="images/2D/cha3.jpg" alt="Render 4">
+      <p class="gallery-2d-caption"><i>Creature Design 3</i>, <i>2025</i></p>
+    </div>
   </div>
 
   <center><p>More works to be uploaded soon.</p></center>
@@ -211,7 +275,6 @@
 
     let currentIndex = 0;
 
-    // 打开 Lightbox
     items.forEach((el, index) => {
       el.addEventListener('click', () => {
         currentIndex = index;
@@ -220,7 +283,6 @@
       });
     });
 
-    // 显示内容
     function showItem() {
       const el = items[currentIndex];
       if (el.tagName === 'IMG') {
