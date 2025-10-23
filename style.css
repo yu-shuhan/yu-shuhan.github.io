@@ -121,6 +121,7 @@
     color: #444;
   }
   
+  
   /* ===========================
      🔘 View Button
      =========================== */
@@ -133,6 +134,27 @@
     text-decoration: none;
     font-size: 0.9rem;
   }
+
+  /* 手机端优化 */
+@media (max-width: 768px) {
+  .overlay h3 {
+    font-size: 1.8rem; /* 缩小标题 */
+  }
+
+  .overlay p {
+    font-size: 0.9rem; /* 缩小注释文字 */
+  }
+
+  .view-btn {
+    font-size: 0.8rem; /* 缩小按钮文字 */
+    padding: 5px 12px; /* 缩小按钮 */
+  }
+
+  .overlay {
+    padding: 0.8rem; /* 减小 overlay 内边距，防止挡住按钮 */
+  }
+}
+
   
   /* ===========================
      ⚙️ Footer
