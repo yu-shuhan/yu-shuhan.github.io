@@ -3,247 +3,273 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shuhan Yu | Painting</title>
+  <title>Shuhan Yu | Paintings</title>
+
+  <!-- 字体：与 index 保持一致 -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Anek+Latin:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    /* --- Gallery Layout --- */
-    .painting-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* ✅ 固定每行两张 */
-  gap: 5px;
-  justify-items: center;
-  align-items: start;
-  padding: 50px 40px;
-}
+    /* =========================
+       ✅ Painting Page Layout
+       ========================= */
 
-
-    .painting-item {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      cursor: pointer;
-      border-radius: 12px;
+    .page-wrap{
+      width: 85%;
+      margin: 50px auto 90px auto;
     }
 
-    .painting-item img {
+    .page-title{
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 0.8px;
+      color: #111;
+      margin: 0 0 18px 0;
+    }
+
+    /* ✅ Masonry（两列瀑布流）更像参考图 */
+    .painting-masonry{
+      column-count: 3;
+      column-gap: 12px;     /* 你参考图那种紧凑间距 */
+    }
+
+    .painting-item{
+      break-inside: avoid;
+      margin: 0 0 30px 0;   /* 纵向间距 */
+      cursor: pointer;
+    }
+
+    .painting-item img{
       width: 100%;
       height: auto;
-      object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
-      border-radius: 12px;
+      border-radius: 0;
+      /* ✅ 不要 hover 放大 */
+      transform: none !important;
+      transition: none !important;
     }
 
-    .painting-item:hover img {
-      transform: scale(1.03);
+    /* ✅ 手机端：1 列 */
+    @media (max-width: 768px){
+      .page-wrap{ width: 92%; margin-top: 30px; }
+      .painting-masonry{
+        column-count: 1;
+        column-gap: 0;
+      }
+      .painting-item{ margin-bottom: 14px; }
     }
 
-    /* --- Hover overlay --- */
-    .painting-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      opacity: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-family: "Anek Latin", sans-serif;
-      font-size: 16px;
-      transition: opacity 0.3s ease;
-      text-align: center;
-    }
-
-    .painting-item:hover .painting-overlay {
-      opacity: 1;
-    }
-
-    /* --- Lightbox --- */
+    /* =========================
+       ✅ Lightbox
+       ========================= */
     .lightbox {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
       display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       z-index: 9999;
+      padding: 24px;
+      box-sizing: border-box;
     }
 
-    .lightbox img {
-      max-width: 88%;
-      max-height: 80%;
+    .lightbox img{
+      max-width: 92%;
+      max-height: 80vh;
       object-fit: contain;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
+      border-radius: 0;
     }
 
-    /* --- Close + navigation --- */
-    .lightbox .close-btn {
+    .lightbox-caption{
+      margin-top: 14px;
+      color: rgba(255,255,255,0.88);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.6px;
+      text-align: center;
+    }
+
+    .close-btn{
       position: absolute;
-      top: 25px;
-      right: 45px;
-      font-size: 38px;
+      top: 18px;
+      right: 22px;
+      font-size: 34px;
       color: white;
       cursor: pointer;
-      font-family: "Playfair Display", serif;
-      z-index: 10000;
+      user-select: none;
     }
 
-    .lightbox .nav-btn {
+    .nav-btn{
       position: absolute;
       top: 50%;
-      font-size: 48px;
-      color: white;
-      cursor: pointer;
-      padding: 10px 20px;
-      user-select: none;
-      font-family: "Playfair Display", serif;
       transform: translateY(-50%);
-      transition: opacity 0.3s ease;
+      font-size: 44px;
+      color: rgba(255,255,255,0.9);
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
     }
-
-    .lightbox .nav-btn:hover { opacity: 0.7; }
-
-    .lightbox .prev { left: 40px; }
-    .lightbox .next { right: 40px; }
-
-    /* --- Caption under lightbox image --- */
-    .lightbox-caption {
-      color: #fff;
-      font-family: "Anek Latin", sans-serif;
-      font-size: 15px;
-      margin-top: 12px;
-      text-align: center;
-      opacity: 0.9;
-    }
-
-    @media (max-width: 768px) {
-      .painting-gallery {
-        grid-template-columns: 1fr;
-        padding: 30px 20px;
-        gap: 20px;
-      }
-      .lightbox img {
-        max-width: 95%;
-        max-height: 70%;
-      }
-    }
+    .nav-btn:hover{ color: #fff; }
+    .prev{ left: 14px; }
+    .next{ right: 14px; }
   </style>
 </head>
 
 <body>
+
+  <!-- ✅ Header：完全复用 index 的结构 -->
   <header>
-    <h1><a href="index.html">Shuhan Yu</a></h1>
-    <nav>
+    <div class="logo">
+      <a href="index.html">Shuhan Yu</a>
+    </div>
+
+    <!-- 手机端三条杠 -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="nav">
       <ul>
-        <li><a href="animation.html">Animation</a></li>
-        <li><a href="#painting">Painting</a></li>
-        <li><a href="design.html">Design</a></li>
+        <li><a href="index.html">Home</a></li>
+
+        <li class="dropdown">
+          <a>Animation</a>
+          <ul class="submenu" id="submenu-animation">
+            <li><a href="animationIOW.html">Into Other Woods</a></li>
+            <li><a href="animationDaydreaming.html">Daydreaming</a></li>
+            <li><a href="animationDemo.html">3D &amp; 2D Demo</a></li>
+          </ul>
+        </li>
+
+        <li><a href="visdev.html">Visual Development</a></li>
+        <li><a href="painting.html" class="active">Paintings</a></li>
+        <li><a href="illustration.html">Illustration &amp; Sketchbook</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="painting" class="gallery-section">
-    <h2>Painting</h2>
-    <div class="painting-gallery">
-      <div class="painting-item">
-        <img src="images/painting/1.jpg" alt="Painting 1" data-caption="2024 — Oil Painting" />
-        <div class="painting-overlay"><p>2024 — Oil Painting</p></div>
-      </div>
-      <div class="painting-item">
-        <img src="images/painting/4.jpg" alt="Painting 2" data-caption="2023 — Oil Painting" />
-        <div class="painting-overlay"><p>2025 — Oil Painting</p></div>
-      </div>
-      <div class="painting-item">
-        <img src="images/painting/2.jpg" alt="Painting 3" data-caption="2022 — Oil Painting" />
-        <div class="painting-overlay"><p>2025 — Oil Painting</p></div>
-      </div>
-      <div class="painting-item">
-        <img src="images/painting/3.jpg" alt="Painting 4" data-caption="2025 — Oil Painting" />
-        <div class="painting-overlay"><p>2024 — Oil Painting</p></div>
-      </div>
-      <div class="painting-item">
-        <img src="images/painting/5.jpg" alt="Painting 5" data-caption="2025 — Oil Painting" />
-        <div class="painting-overlay"><p>2023 — Oil Painting</p></div>
-      </div>
-      <div class="painting-item">
-        <img src="images/painting/6.jpg" alt="Painting 6" data-caption="2025 — Oil Painting" />
-        <div class="painting-overlay"><p>2025 — Oil Painting</p></div>
-      </div>
-    </div>
-  </section>
+  <!-- ✅ 内容区 -->
+  <main class="page-wrap">
+     <!-- <h1 class="page-title">PAINTINGS</h1> -->
 
-  <!-- ✅ Lightbox 弹窗 -->
+    <section class="painting-masonry" id="painting-masonry">
+      <!-- 你可以继续往下复制 painting-item 增加更多图 -->
+       <div class="painting-item">
+        <img src="images/painting/7.jpg" alt="Painting 6" data-caption="2026 — Oil Painting">
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/6.jpg" alt="Painting 6" data-caption="2025 — Oil Painting">
+      </div>
+       
+     <div class="painting-item">
+        <img src="images/painting/12.jpg" alt="Painting 10" data-caption="2026 — Oil Painting">
+      </div> 
+     
+      
+      <div class="painting-item">
+        <img src="images/painting/1.jpg" alt="Painting 1" data-caption="2024 — Oil Painting">
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/10.jpg" alt="Painting 5" data-caption="2023 — Oil Painting">
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/3.jpg" alt="Painting 4" data-caption="2024 — Oil Painting">
+      </div>
+       <div class="painting-item">
+        <img src="images/painting/8.jpg" alt="Painting 6" data-caption="2025 — Oil Painting">
+      </div>
+      <div class="painting-item">
+        <img src="images/painting/2.jpg" alt="Painting 3" data-caption="2022 — Oil Painting">
+      </div>
+      
+       <div class="painting-item">
+        <img src="images/painting/4.jpg" alt="Painting 2" data-caption="2025 — Oil Painting">
+      </div>
+      
+      
+    </section>
+  </main>
+
+  <!-- ✅ Lightbox -->
   <div class="lightbox" id="lightbox">
-    <span class="close-btn">&times;</span>
-    <span class="nav-btn prev">&#10094;</span>
-    <img id="lightbox-img" src="" alt="">
-    <span class="nav-btn next">&#10095;</span>
-    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <span class="close-btn" id="lb-close">&times;</span>
+    <span class="nav-btn prev" id="lb-prev">&#10094;</span>
+    <img id="lb-img" src="" alt="">
+    <span class="nav-btn next" id="lb-next">&#10095;</span>
+    <div class="lightbox-caption" id="lb-cap"></div>
   </div>
 
-  <footer>
-    <p>© 2025 Shuhan Yu. All rights reserved.</p>
-  </footer>
+  <footer>© 2025 Shuhan Yu</footer>
 
+  <!-- ✅ 菜单 + lightbox JS：独立可用（不依赖 script.js） -->
   <script>
-    // --- Lightbox JS ---
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const caption = document.getElementById('lightbox-caption');
-    const items = document.querySelectorAll('.painting-item img');
-    const closeBtn = document.querySelector('.close-btn');
-    const nextBtn = document.querySelector('.next');
-    const prevBtn = document.querySelector('.prev');
-    let currentIndex = 0;
+    // ===== Mobile menu toggle (same behavior as index) =====
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("menu-toggle");
+      const nav = document.getElementById("nav");
 
-    items.forEach((img, index) => {
-      img.addEventListener('click', () => {
-        currentIndex = index;
-        openLightbox(img.src, img.dataset.caption);
-      });
+      if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+          nav.classList.toggle("active");
+          toggle.classList.toggle("open");
+        });
+      }
     });
 
-    function openLightbox(src, text) {
+    // ===== Lightbox =====
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCap = document.getElementById('lb-cap');
+    const closeBtn = document.getElementById('lb-close');
+    const nextBtn = document.getElementById('lb-next');
+    const prevBtn = document.getElementById('lb-prev');
+
+    const imgs = Array.from(document.querySelectorAll('.painting-item img'));
+    let currentIndex = 0;
+
+    function openLB(index){
+      currentIndex = index;
+      lbImg.src = imgs[currentIndex].src;
+      lbCap.textContent = imgs[currentIndex].dataset.caption || '';
       lightbox.style.display = 'flex';
-      lightboxImg.src = src;
-      caption.textContent = text;
     }
 
-    function closeLightbox() {
+    function closeLB(){
       lightbox.style.display = 'none';
     }
 
-    function showNext() {
-      currentIndex = (currentIndex + 1) % items.length;
-      lightboxImg.src = items[currentIndex].src;
-      caption.textContent = items[currentIndex].dataset.caption;
+    function next(){
+      currentIndex = (currentIndex + 1) % imgs.length;
+      openLB(currentIndex);
     }
 
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + items.length) % items.length;
-      lightboxImg.src = items[currentIndex].src;
-      caption.textContent = items[currentIndex].dataset.caption;
+    function prev(){
+      currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
+      openLB(currentIndex);
     }
 
-    closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', showNext);
-    prevBtn.addEventListener('click', showPrev);
+    imgs.forEach((img, i) => img.addEventListener('click', () => openLB(i)));
+    closeBtn.addEventListener('click', closeLB);
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
 
-    // 键盘控制
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
+    // 点击黑底退出
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLB();
+    });
+
+    // 键盘
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display !== 'flex') return;
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
     });
   </script>
+
 </body>
 </html>
