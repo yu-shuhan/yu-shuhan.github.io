@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shuhan Yu | Visual Development</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+
+<style>
+/* ===============================
+   Visual Development Page System
+================================ */
+:root{
+  --page-w: 90%;
+  --text-w: 860px;
+  --gap: 12px;
+  --muted: rgba(0,0,0,0.62);
+  --muted2: rgba(0,0,0,0.75);
+  --line: rgba(0,0,0,0.08);
+}
+
+.page-wrap{
+  width: var(--page-w);
+  margin: 56px auto 110px auto;
+}
+
+.page-lede{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    color: #111;
+    margin: 0 0 50px 0;
+}
+
+/* Each project block */
+.project{
+  margin: 0 auto 90px auto;
+}
+
+.project-header{
+  max-width: var(--text-w);
+  margin: 0 auto 28px auto;
+  text-align: center; /* ✅ 标题居中 */
+}
+
+.project-title{
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #111;
+}
+
+.project-title.accent{
+  color: rgb(213, 163, 12);
+}
+
+.project-meta{
+  margin: 14px auto 0 auto;
+  max-width: 720px;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* logline */
+.project-logline{
+  margin: 14px auto 0 auto;
+  max-width: 720px;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color:black;
+  text-align: center;
+}
+
+/* optional section label (like Beatboards) */
+.caption{
+  max-width: var(--text-w);
+  margin: 14px auto 0 auto;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ===============================
+   Grid System
+================================ */
+.visdev-grid{
+  width: 90%;
+  margin: 28px auto 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+
+.media{
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* full width */
+.media.full{ grid-column: 1 / -1; }
+
+/* image */
+.media img{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Vimeo responsive */
+.vimeo{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.vimeo iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* subtle divider between big sections if you want */
+.divider{
+  max-width: var(--text-w);
+  height: 1px;
+  background: var(--line);
+  margin: 80px auto;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 768px){
+  :root{ --page-w: 92%; --gap: 14px; }
+  .page-wrap{ margin-top: 32px; }
+  .project-title{ font-size: 34px; }
+  .project-header{ text-align: center; }
+  .visdev-grid{ grid-template-columns: 1fr; }
+  .media.full{ grid-column: auto; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ✅ header 与 index 保持一致 -->
+<header>
+  <div class="logo">
+    <a href="index.html">Shuhan Yu</a>
+  </div>
+
+  <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+
+      <li class="dropdown">
+        <a>Animation</a>
+        <ul class="submenu">
+          <li><a href="animationIOW.html">Into Other Woods</a></li>
+          <li><a href="animationDaydreaming.html">Daydreaming</a></li>
+          <li><a href="animationDemo.html">3D &amp; 2D Demo</a></li>
+        </ul>
+      </li>
+
+      <li><a href="visdev.html" class="active">Visual Development</a></li>
+      <li><a href="painting.html">Paintings</a></li>
+      <li><a href="illustration.html">Illustration &amp; Sketchbook</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="page-wrap">
+
+  <p class="page-lede">
+    Storyboards, character design, and concept art from personal projects.
+  </p>
+
+  <!-- =========================
+       Project 1: The Tooth
+  ========================== -->
+ <section class="project">
+
+  <div class="project-header">
+    <h1 class="project-title accent">The Tooth</h1>
+    <div class="project-meta">
+      Storyboards · Character Design · Background
+    </div>
+  </div>
+
+  <!-- 1) Key concept -->
+  <div class="visdev-grid">
+    <div class="media full">
+      <img src="images/Visdev/Visdev_tooth1.jpg" alt="The Tooth - key concept">
+    </div>
+  </div>
+
+  <!-- 2) Logline (center) -->
+  <div class="project-header">
+    <div class="project-logline">
+      <strong>Logline:</strong> After moving from her rural hometown to a dense city, a young girl tries to complete a childhood ritual—throwing her fallen tooth onto the roof so everything can stay on the right path—yet the towering buildings and her fading belief threaten to make it impossible.
+    </div>
+  </div>
+
+  <!-- 3) Storyboard -->
+  <div class="visdev-grid">
+    <div class="media full">
+      <div class="vimeo">
+        <iframe
+          title="The Tooth - Vimeo"
+          src="https://player.vimeo.com/video/1169801058?h=b72a4e1b5e"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- half / half -->
+    <div class="media">
+      <img src="images/Visdev/ChaGirl1.JPG" alt="Character design - girl">
+    </div>
+
+    <div class="media">
+      <img src="images/Visdev/Visdev_tooth2.jpg" alt="Character design - The Tooth">
+    </div>
+
+    <!-- full width -->
+    <div class="media full">
+      <img src="images/Visdev/Visdev_Village.JPG" alt="Village background concept">
+    </div>
+  </div>
+
+  <p class="caption">Concept art — village background</p>
+
+  <div class="visdev-grid" style="margin-top:14px;">
+    <div class="media full">
+      <img src="images/Visdev/Beatboards.jpg" alt="Beatboards">
+    </div>
+  </div>
+
+  <p class="caption">Beatboards</p>
+
+</section>
+
+  <div class="divider"></div>
+
+  <!-- =========================
+       Project 2: The Vessel
+  ========================== -->
+  <section class="project">
+
+    <div class="project-header">
+      <h2 class="project-title">The Vessel</h2>
+
+      <div class="project-meta">
+        Storyboard · Character Design
+      </div>
+
+      <div class="project-logline">
+        <strong>Logline:</strong> Magician embarks on a quest for hidden treasure, battling what appears to be a sinister force along the way. Yet things are not as simple as they seem—how could something so adorable truly be evil? And where will <em>The Vessel</em> ultimately lead them...?
+      </div>
+    </div>
+
+    <div class="visdev-grid">
+      <div class="media full">
+        <div class="vimeo">
+          <iframe
+            title="The Vessel - Vimeo"
+            src="https://player.vimeo.com/video/1169809265?h=93b1ae43e5"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div class="media">
+        <img src="images/Visdev/Cha_1.JPG" alt="Character design - ginkgo">
+      </div>
+
+      <div class="media">
+        <img src="images/Visdev/ChaFlowerBeast.JPG" alt="Creature design - flower beast">
+      </div>
+
+      <div class="media full">
+        <img src="images/Visdev/Cha_2.JPG" alt="Character sheet">
+      </div>
+    </div>
+
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- =========================
+       Section: Personal Projects
+  ========================== -->
+  <section class="project">
+    <div class="project-header">
+      <h2 class="project-title">Personal Projects</h2>
+      <div class="project-meta">Selected design studies</div>
+    </div>
+
+    <div class="visdev-grid">
+      <div class="media full">
+        <img src="images/Visdev/ChaShoes.JPG" alt="Character design">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2025 Shuhan Yu</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+      toggle.classList.toggle("open");
+    });
+  }
+});
+</script>
+
+</body>
+</html>

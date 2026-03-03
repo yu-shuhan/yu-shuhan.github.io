@@ -1,107 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shuhan Yu | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- 加入 Google 字体 -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Anek+Latin:wght@400;600&display=swap" rel="stylesheet">
-  
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shuhan Yu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Noto+Naskh+Arabic:wght@400..700&family=Shadows+Into+Light&family=Zilla+Slab:ital,wght@1,400;1,700&display=swap');
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-  <!-- 🔹 顶部导航栏 -->
-  <header>
-    <h1><a href="index.html">Shuhan Yu</a></h1>
-    <nav>
-      <ul>
-        <li><a href="animation.html">Animation</a></li>
-        <li><a href="painting.html">Painting</a></li>
-        <li><a href="design.html">Design</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- 🔹 Animation 区块 -->
-  <section id="animation" class="gallery-section">
-    <h2>Animation</h2>
-    <div class="gallery-grid">
-      <!-- ✅ 示例作品卡片 -->
-      <div class="gallery-item">
-        <!-- 缩略图：可放静态封面图 -->
-        <img src="images/animation1.jpg" alt="Animation 1" />
-        <div class="overlay">
-          <h3>Into Other Woods</h3>
-          <p>2024, 3D Animation (Maya)</p>
-          <!-- 点击跳转到单独 project 页面 -->
-          <a href="animationIOW.html" class="view-btn">View</a>
-        </div>
-      </div>
-      <!-- 🔁 添加更多动画作品时复制上面这块 -->
-    </div>
-
-    <!-- ⬇️ 在这里插入一个 spacer -->
-<div style="height: 80px;"></div>
-
-    <div class="gallery-grid">
-        <!-- ✅ 示例作品卡片 -->
-        <div class="gallery-item">
-          <!-- 缩略图：可放静态封面图 -->
-          <img src="images/animation2.jpg" alt="Animation 2" />
-          <div class="overlay">
-            <h3>Daydreaming</h3>
-            <p>2025, 3D Animation (Unreal Engine)</p>
-            <!-- 点击跳转到单独 project 页面 -->
-            <a href="animationDaydreaming.html" class="view-btn">View</a>
-          </div>
-        </div>
-        <!-- 🔁 添加更多动画作品时复制上面这块 -->
-      </div>
-
-<div style="height: 80px;"></div>
-
-<div class="gallery-grid">
-  <!-- ✅ 示例作品卡片3 -->
-  <div class="gallery-item">
-    <!-- 缩略图：可放静态封面图 -->
-    <img src="images/3D/3d7.jpg" alt="Animation 3" />
-    <div class="overlay">
-      <h3>3D</h3>
-      <p>2024-2025</p>
-      <!-- 点击跳转到单独 project 页面 -->
-      <a href="animation3D.html" class="view-btn">Modeling & Lighting</a>
-    </div>
+<header>
+  <div class="logo">
+    <a href="index.html">Shuhan Yu</a>
   </div>
-  <!-- 🔁 添加更多动画作品时复制上面这块 -->
-</div>
 
-<div style="height: 80px;"></div>
+  <!-- 手机端三条杠 -->
+  <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 
-    <div class="gallery-grid">
-        <!-- ✅ 示例作品卡片4 -->
-        <div class="gallery-item">
-          <!-- 缩略图：可放静态封面图 -->
-          <img src="images/2D/animation2d.JPG" alt="Animation 4" />
-          <div class="overlay">
-            <h3>2D</h3>
-            <p>2024-2025</p>
-            <!-- 点击跳转到单独 project 页面 -->
-            <a href="animation2D.html" class="view-btn">Character Design & Storyboards</a>
-          </div>
-        </div>
-        <!-- 🔁 添加更多动画作品时复制上面这块 -->
-      </div>
+  <nav id="nav">
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
 
-  </section>
+      <!-- ✅ Animation：无箭头按钮；桌面端 hover 出子菜单；手机端默认显示子菜单 -->
+      <li class="dropdown">
+        <a>Animation</a>
 
-  
+        <ul class="submenu" id="submenu-animation">
+          <li><a href="animationIOW.html">Into Other Woods</a></li>
+          <li><a href="animationDaydreaming.html">Daydreaming</a></li>
+          <li><a href="animationDemo.html">3D &amp; 2D Demo</a></li>
+        </ul>
+      </li>
 
-  <footer>
-    <p>© 2025 Shuhan Yu. All rights reserved.</p>
-  </footer>
+      <li><a href="visdev.html">Visual Development</a></li>
+      <li><a href="painting.html">Paintings</a></li>
+      <li><a href="illustration.html">Illustration &amp; Sketchbook</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <script src="script.js"></script>
+
+<!-- Hero Animation Section -->
+<section class="hero">
+
+ 
+  <!-- <img src="images/animation1.jpg" alt="Into Other Woods"> -->
+  <a href="animationIOW.html" class="hero-item">
+    <video
+     src="video/IOW_cover.mp4"
+     autoplay
+     muted
+     loop
+     playsinline
+     preload="metadata"
+     class="hero-video">
+   </video>
+
+    <div class="hero-overlay">
+      <h2>Into Other Woods</h2>
+     <p>2024 · 3D Short Film· Maya</p>
+  </div>
+  </a>
+</section>
+
+
+<!-- ✅ Grid Section: 下面都用一行两个 -->
+<section class="grid-section">
+
+ <a href="animationDaydreaming.html" class="grid-item featured-daydreaming">
+    <img src="images/animation2.jpg" alt="Daydreaming">
+    <div class="grid-caption">
+      <h3>Daydreaming</h3>
+     <p>2025 · 3D Short Film · Unreal Engine</p>
+   </div>
+</a>
+
+  <a href="animationDemo.html" class="grid-item">
+    <img src="images/3D/3d7.jpg" alt="3D & 2D Demo">
+    <div class="grid-caption">
+      <h3>3D &amp; 2D Demo</h3>
+      <p>2024-2026 · Animation Studies</p>
+    </div>
+  </a>
+
+  <a href="visdev.html" class="grid-item">
+    <img src="images/Visdev/Visdev_tooth2.jpg" alt="Visual Development">
+    <div class="grid-caption">
+      <h3>Visual Development</h3>
+    </div>
+  </a>
+
+  <a href="illustration.html" class="grid-item">
+    <img src="images/illustration/illu_Shalemei.JPG" alt="Illustration & Sketchbook">
+    <div class="grid-caption">
+      <h3>Illustration &amp; Sketchbook</h3>
+    </div>
+  </a>
+
+  <a href="painting.html" class="grid-item">
+    <img src="images/painting/2.jpg" alt="Paintings">
+    <div class="grid-caption">
+      <h3>Paintings</h3>
+    </div>
+  </a>
+
+</section>
+
+<footer>© 2025 Shuhan Yu</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuhan Yu | Illustration & Sketchbook</title>
+
+  <!-- 字体：与 index 保持一致 -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* =========================
+       ✅ Painting Page Layout
+       ========================= */
+
+    .page-wrap{
+      width: 85%;
+      margin: 50px auto 90px auto;
+    }
+
+    .page-title{
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 0.8px;
+      color: #111;
+      margin: 0 0 18px 0;
+    }
+
+    /* ✅ Masonry（两列瀑布流）更像参考图 */
+    .painting-masonry{
+      column-count: 3;
+      column-gap: 12px;     /* 你参考图那种紧凑间距 */
+    }
+
+    .painting-item{
+      break-inside: avoid;
+      margin: 0 0 30px 0;   /* 纵向间距 */
+      cursor: pointer;
+    }
+
+    .painting-item img{
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      /* ✅ 不要 hover 放大 */
+      transform: none !important;
+      transition: none !important;
+    }
+
+    /* ✅ 手机端：1 列 */
+    @media (max-width: 768px){
+      .page-wrap{ width: 92%; margin-top: 30px; }
+      .painting-masonry{
+        column-count: 1;
+        column-gap: 0;
+      }
+      .painting-item{ margin-bottom: 14px; }
+    }
+
+    /* =========================
+       ✅ Lightbox
+       ========================= */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .lightbox img{
+      max-width: 92%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 0;
+    }
+
+    .lightbox-caption{
+      margin-top: 14px;
+      color: rgba(255,255,255,0.88);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.6px;
+      text-align: center;
+    }
+
+    .close-btn{
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 34px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .nav-btn{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 44px;
+      color: rgba(255,255,255,0.9);
+      cursor: pointer;
+      user-select: none;
+      padding: 10px 14px;
+    }
+    .nav-btn:hover{ color: #fff; }
+    .prev{ left: 14px; }
+    .next{ right: 14px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ Header：完全复用 index 的结构 -->
+  <header>
+    <div class="logo">
+      <a href="index.html">Shuhan Yu</a>
+    </div>
+
+    <!-- 手机端三条杠 -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+
+        <li class="dropdown">
+          <a>Animation</a>
+          <ul class="submenu" id="submenu-animation">
+            <li><a href="animationIOW.html">Into Other Woods</a></li>
+            <li><a href="animationDaydreaming.html">Daydreaming</a></li>
+            <li><a href="animationDemo.html">3D &amp; 2D Demo</a></li>
+          </ul>
+        </li>
+
+        <li><a href="visdev.html">Visual Development</a></li>
+        <li><a href="painting.html">Paintings</a></li>
+        <li><a href="illustration.html" class="active">Illustration &amp; Sketchbook</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ✅ 内容区 -->
+  <main class="page-wrap">
+     <h1 class="page-title">A collection of illustrations, design, and life drawings...</h1>
+
+    <section class="painting-masonry" id="painting-masonry">
+      <!-- 你可以继续往下复制 painting-item 增加更多图 -->
+       <div class="painting-item">
+            <img src="images/illustration/illu_Shalemei.JPG" alt="Painting 6" data-caption="Salome-digital">
+       </div>
+       <div class="painting-item">
+            <img src="images/illustration/1.jpg" alt="Painting 6">
+       </div>
+       <div class="painting-item">
+            <img src="images/painting/9.jpg" alt="Painting 6">
+       </div>
+        <div class="painting-item">
+            <img src="images/illustration/Ill_Yo.JPG" alt="Painting 6" data-caption="Happy Birthday!-digital">
+       </div>
+
+         <div class="painting-item">
+            <img src="images/illustration/illu_Mar2.JPG" alt="Painting 6" data-caption="The Most Beautiful Drowned in the World2">
+       </div>
+        <div class="painting-item">
+            <img src="images/design/2.jpg" alt="Painting 6" data-caption="Wandering Uterus2-zine">
+       </div>
+       <div class="painting-item">
+            <img src="images/design/11.png" alt="Painting 6" data-caption="ink on paper">
+       </div>
+
+       <div class="painting-item">
+            <img src="images/illustration/illu_Mar1.JPG" alt="Painting 6" data-caption="The Most Beautiful Drowned in the World1">
+       </div>
+       
+     
+
+       <div class="painting-item">
+            <img src="images/design/1.jpg" alt="Painting 6" data-caption="Wandering Uterus1-zine">
+       </div>
+      
+       <div class="painting-item">
+            <img src="images/design/3.jpg" alt="Painting 6" data-caption="Wandering Uterus3-zine">
+       </div>
+     
+       <div class="painting-item">
+            <img src="images/design/4.jpg" alt="Painting 6" data-caption="Wandering Uterus4-zine">
+       </div>
+       
+       
+       
+       <div class="painting-item">
+            <img src="images/painting/11.jpg" alt="Painting 6">
+       </div>
+      
+      
+      
+    </section>
+  </main>
+
+  <!-- ✅ Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="lb-close">&times;</span>
+    <span class="nav-btn prev" id="lb-prev">&#10094;</span>
+    <img id="lb-img" src="" alt="">
+    <span class="nav-btn next" id="lb-next">&#10095;</span>
+    <div class="lightbox-caption" id="lb-cap"></div>
+  </div>
+
+  <footer>© 2025 Shuhan Yu</footer>
+
+  <!-- ✅ 菜单 + lightbox JS：独立可用（不依赖 script.js） -->
+  <script>
+    // ===== Mobile menu toggle (same behavior as index) =====
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("menu-toggle");
+      const nav = document.getElementById("nav");
+
+      if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+          nav.classList.toggle("active");
+          toggle.classList.toggle("open");
+        });
+      }
+    });
+
+    // ===== Lightbox =====
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCap = document.getElementById('lb-cap');
+    const closeBtn = document.getElementById('lb-close');
+    const nextBtn = document.getElementById('lb-next');
+    const prevBtn = document.getElementById('lb-prev');
+
+    const imgs = Array.from(document.querySelectorAll('.painting-item img'));
+    let currentIndex = 0;
+
+    function openLB(index){
+      currentIndex = index;
+      lbImg.src = imgs[currentIndex].src;
+      lbCap.textContent = imgs[currentIndex].dataset.caption || '';
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLB(){
+      lightbox.style.display = 'none';
+    }
+
+    function next(){
+      currentIndex = (currentIndex + 1) % imgs.length;
+      openLB(currentIndex);
+    }
+
+    function prev(){
+      currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
+      openLB(currentIndex);
+    }
+
+    imgs.forEach((img, i) => img.addEventListener('click', () => openLB(i)));
+    closeBtn.addEventListener('click', closeLB);
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    // 点击黑底退出
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLB();
+    });
+
+    // 键盘
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display !== 'flex') return;
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  </script>
+
+</body>
+</html>
