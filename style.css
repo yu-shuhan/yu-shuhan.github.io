@@ -303,6 +303,127 @@ nav a:hover::after {
   opacity: 0.9;
 }
 
+/* ===============================
+   Pitch Deck Carousel
+================================ */
+.pitch-deck{
+  width: 80%;
+  margin: 34px auto 56px auto;
+}
+
+.pitch-main{
+  position: relative;
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.pitch-image{
+  width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* arrows */
+.pitch-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  width: 56px;
+  height: 72px;
+  border: 0;
+  background: transparent;
+  color: rgba(255,255,255,0.92);
+
+  font-family: Inter, sans-serif;
+  font-size: 68px;
+  font-weight: 200;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.pitch-arrow:hover{
+  opacity: 0.65;
+}
+
+.pitch-prev{
+  left: 22px;
+}
+
+.pitch-next{
+  right: 22px;
+}
+
+/* thumbnails */
+.pitch-thumbs{
+  margin-top: 26px;
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.pitch-thumb{
+  flex: 0 0 160px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.pitch-thumb img{
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+.pitch-thumb:hover,
+.pitch-thumb.active{
+  opacity: 1;
+}
+
+.pitch-thumb.active{
+  transform: translateY(-2px);
+}
+
+/* mobile */
+@media (max-width: 768px){
+  .pitch-deck{
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .pitch-arrow{
+    font-size: 52px;
+    width: 44px;
+  }
+
+  .pitch-prev{
+    left: 10px;
+  }
+
+  .pitch-next{
+    right: 10px;
+  }
+
+  .pitch-thumbs{
+    gap: 10px;
+    padding: 0 4%;
+  }
+
+  .pitch-thumb{
+    flex-basis: 110px;
+  }
+}
+
 /* ✅ 手机端：网格变 1 列 */
 @media (max-width: 768px){
   .grid-section{
