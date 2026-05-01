@@ -221,7 +221,41 @@
       <strong>Logline:</strong> After moving from her rural hometown to a dense city, a young girl tries to complete a childhood ritual—throwing her fallen tooth onto the roof so everything can stay on the right path—yet the towering buildings and her fading belief threaten to make it impossible.
     </div>
   </div>
+  
+<!-- Pitch Deck Carousel -->
+<div class="pitch-deck" data-carousel>
+  <div class="pitch-main">
+    <button class="pitch-arrow pitch-prev" data-prev type="button" aria-label="Previous image">‹</button>
 
+<img
+  class="pitch-image"
+  data-main-image
+  src="images/Visdev/ToothDeck/1.png"
+  alt="The Tooth pitch deck image 1"
+>
+
+    <button class="pitch-arrow pitch-next" data-next type="button" aria-label="Next image">›</button>
+</div>
+
+  <div class="pitch-thumbs" data-thumbs>
+    <button class="pitch-thumb active" data-index="0"><img src="images/Visdev/ToothDeck/1.png" alt=""></button>
+    <button class="pitch-thumb" data-index="1"><img src="images/Visdev/ToothDeck/2.png" alt=""></button>
+    <button class="pitch-thumb" data-index="2"><img src="images/Visdev/ToothDeck/3.png" alt=""></button>
+    <button class="pitch-thumb" data-index="3"><img src="images/Visdev/ToothDeck/4.png" alt=""></button>
+    <button class="pitch-thumb" data-index="4"><img src="images/Visdev/ToothDeck/5.png" alt=""></button>
+    <button class="pitch-thumb" data-index="5"><img src="images/Visdev/ToothDeck/6.png" alt=""></button>
+    <button class="pitch-thumb" data-index="6"><img src="images/Visdev/ToothDeck/7.png" alt=""></button>
+    <button class="pitch-thumb" data-index="7"><img src="images/Visdev/ToothDeck/8.png" alt=""></button>
+    <!-- <button class="pitch-thumb" data-index="8"><img src="images/Visdev/ToothDeck/9.png" alt=""></button>  -->
+    <button class="pitch-thumb" data-index="9"><img src="images/Visdev/ToothDeck/10.png" alt=""></button>
+    <button class="pitch-thumb" data-index="10"><img src="images/Visdev/ToothDeck/11.png" alt=""></button>
+    <button class="pitch-thumb" data-index="11"><img src="images/Visdev/ToothDeck/12.png" alt=""></button>
+    <button class="pitch-thumb" data-index="12"><img src="images/Visdev/ToothDeck/13.png" alt=""></button>
+    <button class="pitch-thumb" data-index="13"><img src="images/Visdev/ToothDeck/14.png" alt=""></button>
+  </div>
+
+  <p class="caption">Pitch Deck</p>
+</div>
   <!-- 3) Storyboard -->
   <div class="visdev-grid">
     <div class="media full">
@@ -345,15 +379,79 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("JS loaded");
+
   const toggle = document.getElementById("menu-toggle");
   const nav = document.getElementById("nav");
 
   if (toggle && nav) {
+    toggle.setAttribute("aria-expanded", "false");
+
     toggle.addEventListener("click", () => {
-      nav.classList.toggle("active");
-      toggle.classList.toggle("open");
+      const isOpen = nav.classList.toggle("active");
+      toggle.classList.toggle("open", isOpen);
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
   }
+
+  const carousel = document.querySelector("[data-carousel]");
+  console.log("carousel:", carousel);
+  if (!carousel) return;
+
+  const mainImage = carousel.querySelector("[data-main-image]");
+  const thumbs = Array.from(carousel.querySelectorAll(".pitch-thumb"));
+  const prevButton = carousel.querySelector("[data-prev]");
+  const nextButton = carousel.querySelector("[data-next]");
+
+  console.log("mainImage:", mainImage);
+  console.log("thumbs:", thumbs.length);
+  console.log("prevButton:", prevButton);
+  console.log("nextButton:", nextButton);
+
+  let currentIndex = 0;
+
+  function goToSlide(index) {
+    currentIndex = (index + thumbs.length) % thumbs.length;
+
+    const currentThumb = thumbs[currentIndex];
+    const currentThumbImg = currentThumb.querySelector("img");
+
+    mainImage.src = currentThumbImg.src;
+    mainImage.alt = `The Tooth pitch deck image ${currentIndex + 1}`;
+
+    thumbs.forEach((thumb, i) => {
+      thumb.classList.toggle("active", i === currentIndex);
+    });
+
+    currentThumb.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center"
+    });
+
+    console.log("go to slide:", currentIndex + 1);
+  }
+
+  if (prevButton) {
+    prevButton.addEventListener("click", () => {
+      console.log("prev clicked");
+      goToSlide(currentIndex - 1);
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => {
+      console.log("next clicked");
+      goToSlide(currentIndex + 1);
+    });
+  }
+
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener("click", () => {
+      console.log("thumb clicked:", index + 1);
+      goToSlide(index);
+    });
+  });
 });
 </script>
 
