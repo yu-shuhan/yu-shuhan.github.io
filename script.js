@@ -1,3 +1,4 @@
+/* 
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.getElementById("menu-toggle");
   const nav = document.getElementById("nav");
@@ -10,3 +11,4 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
 });
+*/
